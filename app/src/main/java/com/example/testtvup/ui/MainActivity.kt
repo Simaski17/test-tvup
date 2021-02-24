@@ -1,8 +1,8 @@
-package com.example.testtvup
+package com.example.testtvup.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
+import com.example.testtvup.R
 
 class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
