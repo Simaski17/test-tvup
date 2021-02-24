@@ -36,7 +36,7 @@ class AppModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.spotify.com")
+            .baseUrl("https://tvup-265af-default-rtdb.firebaseio.com/")
             .client(provideHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
