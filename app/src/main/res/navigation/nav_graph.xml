@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/catalogueMainFragment"
-        android:name="com.example.testtvup.ui.CatalogueMainFragment"
+        android:name="com.example.testtvup.ui.catalogue.CatalogueMainFragment"
         android:label="fragment_catalogue_main"
         tools:layout="@layout/fragment_catalogue_main" />
 </navigation>

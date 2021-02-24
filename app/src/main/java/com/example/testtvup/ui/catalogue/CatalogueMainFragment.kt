@@ -1,4 +1,4 @@
-package com.example.testtvup.ui
+package com.example.testtvup.ui.catalogue
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
