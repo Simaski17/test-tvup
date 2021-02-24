@@ -2,6 +2,9 @@ package com.example.testtvup.di
 
 import android.app.Application
 import androidx.room.Room
+import com.example.data.source.LocalDataSource
+import com.example.testtvup.data.database.FeedDatabase
+import com.example.testtvup.data.database.RoomDataSource
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -13,6 +16,17 @@ import javax.inject.Singleton
 
 @Module
 class AppModule {
+
+    @Provides
+    @Singleton
+    fun databaseProvider(app: Application) = Room.databaseBuilder(
+            app,
+            FeedDatabase::class.java,
+            "feed-db"
+    ).build()
+
+    @Provides
+    fun localDataSourceProvider(db: FeedDatabase): LocalDataSource = RoomDataSource(db)
 
     @Singleton
     @Provides
