@@ -73,14 +73,14 @@ class CatalogueMainFragment : Fragment() {
 
             data.notNull {
 
-               /* val rnds = (0..6).random()
+                val rnds = (0..6).random()
                 activity?.let { it1 ->
                     Glide
                         .with(it1.applicationContext)
                         .load(it[rnds].imageUrl.toString())
                         .centerCrop()
                         .into(ivBackground)
-                }*/
+                }
 
             }
         }
