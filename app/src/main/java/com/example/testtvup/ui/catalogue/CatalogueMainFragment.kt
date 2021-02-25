@@ -113,13 +113,10 @@ class CatalogueMainFragment : Fragment() {
     fun addData(list: ArrayList<ResponseIMDB>){
 
         list.forEach {
-            Log.e("DATA", "FOREACH ${it.title}")
-
 
             var arrayListCoupleVerticalImages : ArrayList<HorizontalImageModel> = ArrayList()
 
             it.items.forEach {
-                Log.e("DATA", "RESPONSE ITEM ${it.art}")
                 val horizontalImageModel1 : HorizontalImageModel =
                     HorizontalImageModel(it.art,Constants.VERTICAL_LIST)
                 arrayListCoupleVerticalImages.add(horizontalImageModel1)
@@ -128,16 +125,11 @@ class CatalogueMainFragment : Fragment() {
             val horizontalImageListModel1 : HorizontalImageListModel = HorizontalImageListModel(arrayListCoupleVerticalImages,Constants.HORIZONTAL_LIST)
             horizontalImageListModel1.title = it.title
 
-
             arrayListImages?.add(horizontalImageListModel1)
-
 
         }
 
         showFeedItems(vertical_recyclerview,arrayListImages)
-
-        Log.e("DATA", "arrayListImages ${arrayListImages.size}")
-        Log.e("DATA", "arrayListImages ${arrayListImages}")
 
     }
 
