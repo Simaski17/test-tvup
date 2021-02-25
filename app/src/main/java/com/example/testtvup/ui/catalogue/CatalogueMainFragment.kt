@@ -5,16 +5,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.domain.Backgrounds
 import com.example.domain.ResponseIMDB
 import com.example.falabellatest.ui.common.*
 import com.example.testtvup.R
 import com.example.testtvup.ui.catalogue.adapter.Constants
+import com.example.testtvup.ui.catalogue.adapter.FeedAdapter
+import com.example.testtvup.ui.catalogue.adapter.FeedItemBinder
+import com.example.testtvup.ui.catalogue.adapter.FeedItemClass
 import com.example.testtvup.ui.catalogue.adapter.models.HorizontalImageListModel
 import com.example.testtvup.ui.catalogue.adapter.models.HorizontalImageModel
+import com.m.genericadaptersample.adapter.viewholder.HorizontalImagesListViewBinder
 import kotlinx.android.synthetic.main.fragment_catalogue_main.*
 
 
@@ -25,7 +32,7 @@ class CatalogueMainFragment : Fragment() {
 
     val arrayListImages : ArrayList<Any> = ArrayList()
     var items = ArrayList<ResponseIMDB>()
-    val arrayListCoupleVerticalImages : ArrayList<HorizontalImageModel> = ArrayList()
+    private var adapter: FeedAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -96,26 +103,71 @@ class CatalogueMainFragment : Fragment() {
 
             data.notNull {
 
-                Log.e("DATA", "RESPONSE ${it.first().items.first().art}")
-
                 items = it as ArrayList<ResponseIMDB>
-
-               it.forEach {
-                   Log.e("DATA", "FOREACH ${it.title}")
-                   Log.e("DATA", "RESPONSE ITEM ${it.items}")
-               }
+                addData(items)
 
             }
         }
     }
 
-    fun addData(){
+    fun addData(list: ArrayList<ResponseIMDB>){
 
-        val horizontalImageListModel : HorizontalImageListModel = HorizontalImageListModel(arrayListCoupleVerticalImages,
-            Constants.HORIZONTAL_LIST)
-        horizontalImageListModel.title = "Couples"
-        arrayListImages?.add(horizontalImageListModel)
+        list.forEach {
+            Log.e("DATA", "FOREACH ${it.title}")
 
+
+            var arrayListCoupleVerticalImages : ArrayList<HorizontalImageModel> = ArrayList()
+
+            it.items.forEach {
+                Log.e("DATA", "RESPONSE ITEM ${it.art}")
+                val horizontalImageModel1 : HorizontalImageModel =
+                    HorizontalImageModel(it.art,Constants.VERTICAL_LIST)
+                arrayListCoupleVerticalImages.add(horizontalImageModel1)
+            }
+
+            val horizontalImageListModel1 : HorizontalImageListModel = HorizontalImageListModel(arrayListCoupleVerticalImages,Constants.HORIZONTAL_LIST)
+            horizontalImageListModel1.title = it.title
+
+
+            arrayListImages?.add(horizontalImageListModel1)
+
+
+        }
+
+        showFeedItems(vertical_recyclerview,arrayListImages)
+
+        Log.e("DATA", "arrayListImages ${arrayListImages.size}")
+        Log.e("DATA", "arrayListImages ${arrayListImages}")
+
+    }
+
+    fun horizontalImageClick(data : HorizontalImageModel){
+        Toast.makeText(activity?.applicationContext,"HORIZONTAL", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showFeedItems(recyclerView: RecyclerView, list: ArrayList<Any>?) {
+
+        if (adapter == null) {
+            val viewBinders = mutableMapOf<FeedItemClass, FeedItemBinder>()
+
+            val horizontalImagesViewBinder = HorizontalImagesListViewBinder { data : HorizontalImageModel ->
+                horizontalImageClick(data)}
+
+            @Suppress("UNCHECKED_CAST")
+            viewBinders.put(
+                horizontalImagesViewBinder.modelClass,
+                horizontalImagesViewBinder as FeedItemBinder)
+
+            adapter = FeedAdapter(viewBinders)
+        }
+
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL,false)
+        }
+        if (recyclerView.adapter == null) {
+            recyclerView.adapter = adapter
+        }
+        (recyclerView.adapter as FeedAdapter).submitList(list ?: emptyList())
     }
 
 
