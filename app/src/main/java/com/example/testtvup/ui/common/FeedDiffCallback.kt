@@ -1,8 +1,8 @@
 package com.example.testtvup.ui.common
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.testtvup.ui.catalogue.FeedItemBinder
-import com.example.testtvup.ui.catalogue.FeedItemClass
+import com.example.testtvup.ui.catalogue.adapter.FeedItemBinder
+import com.example.testtvup.ui.catalogue.adapter.FeedItemClass
 
 class FeedDiffCallback (
     private val viewBinders: Map<FeedItemClass, FeedItemBinder>

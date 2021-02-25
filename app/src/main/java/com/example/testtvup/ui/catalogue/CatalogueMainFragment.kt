@@ -12,6 +12,9 @@ import com.example.domain.Backgrounds
 import com.example.domain.ResponseIMDB
 import com.example.falabellatest.ui.common.*
 import com.example.testtvup.R
+import com.example.testtvup.ui.catalogue.adapter.Constants
+import com.example.testtvup.ui.catalogue.adapter.models.HorizontalImageListModel
+import com.example.testtvup.ui.catalogue.adapter.models.HorizontalImageModel
 import kotlinx.android.synthetic.main.fragment_catalogue_main.*
 
 
@@ -19,6 +22,10 @@ class CatalogueMainFragment : Fragment() {
 
     private lateinit var component: CatalogueMainFragmentComponent
     private val viewModel: CatalogueMainViewModel by lazy { getViewModel { component.catalogueMainViewModel } }
+
+    val arrayListImages : ArrayList<Any> = ArrayList()
+    var items = ArrayList<ResponseIMDB>()
+    val arrayListCoupleVerticalImages : ArrayList<HorizontalImageModel> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,14 +66,14 @@ class CatalogueMainFragment : Fragment() {
 
             data.notNull {
 
-                val rnds = (0..6).random()
+               /* val rnds = (0..6).random()
                 activity?.let { it1 ->
                     Glide
                         .with(it1.applicationContext)
                         .load(it[rnds].imageUrl.toString())
                         .centerCrop()
                         .into(ivBackground)
-                }
+                }*/
 
             }
         }
@@ -89,10 +96,27 @@ class CatalogueMainFragment : Fragment() {
 
             data.notNull {
 
-                Log.e("DATA", "RESPONSE $it")
+                Log.e("DATA", "RESPONSE ${it.first().items.first().art}")
+
+                items = it as ArrayList<ResponseIMDB>
+
+               it.forEach {
+                   Log.e("DATA", "FOREACH ${it.title}")
+                   Log.e("DATA", "RESPONSE ITEM ${it.items}")
+               }
 
             }
         }
     }
+
+    fun addData(){
+
+        val horizontalImageListModel : HorizontalImageListModel = HorizontalImageListModel(arrayListCoupleVerticalImages,
+            Constants.HORIZONTAL_LIST)
+        horizontalImageListModel.title = "Couples"
+        arrayListImages?.add(horizontalImageListModel)
+
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.testtvup.ui.catalogue
+package com.example.testtvup.ui.catalogue.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
