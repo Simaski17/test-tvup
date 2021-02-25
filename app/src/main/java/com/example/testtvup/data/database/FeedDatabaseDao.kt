@@ -8,6 +8,6 @@ import androidx.room.OnConflictStrategy
 interface FeedDatabaseDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertBackgrounds(background: List<String>)
+    fun insertBackgrounds(background: List<Backgrounds>)
 
 }

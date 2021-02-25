@@ -8,7 +8,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class])
+@Component(modules = [AppModule::class, DataModule::class])
 interface MyTvupTestComponent {
 
     fun plus(module: CatalogueMainFragmentModule): CatalogueMainFragmentComponent

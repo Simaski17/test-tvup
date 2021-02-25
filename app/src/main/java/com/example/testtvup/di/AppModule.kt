@@ -3,8 +3,11 @@ package com.example.testtvup.di
 import android.app.Application
 import androidx.room.Room
 import com.example.data.source.LocalDataSource
+import com.example.data.source.RemoteDataSource
 import com.example.testtvup.data.database.FeedDatabase
 import com.example.testtvup.data.database.RoomDataSource
+import com.example.testtvup.data.server.TheFeedDbDatasource
+import com.example.testtvup.data.server.TheFeedDbService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -55,5 +58,14 @@ class AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    @Singleton
+    @Provides
+    fun provideRetrofitServiceApi(): TheFeedDbService {
+        return provideRetrofit().create(TheFeedDbService::class.java)
+    }
+
+    @Provides
+    fun remoteDataSourceProvider(theFeedDbService: TheFeedDbService): RemoteDataSource = TheFeedDbDatasource(theFeedDbService)
 
 }
