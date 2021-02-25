@@ -8,7 +8,7 @@ class FeedMoviesRepository (private val localDataSource: LocalDataSource, privat
 
     suspend fun getListMovies(): List<ResponseIMDB> {
         var movies = remoteDataSource.getListMovies()
-        //localDataSource.saveListBackgrounds((backs as List<Backgrounds>?)!!)
+        localDataSource.saveListMovies((movies as List<ResponseIMDB>?)!!)
         return movies
     }
 

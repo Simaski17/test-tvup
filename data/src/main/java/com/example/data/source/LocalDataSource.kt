@@ -6,5 +6,6 @@ import com.example.domain.ResponseIMDB
 interface LocalDataSource {
 
     suspend fun saveListBackgrounds(feed: List<Backgrounds>)
+    suspend fun saveListMovies(movies: List<ResponseIMDB>)
 
 }
