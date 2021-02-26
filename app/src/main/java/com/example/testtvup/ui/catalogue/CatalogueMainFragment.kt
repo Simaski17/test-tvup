@@ -92,10 +92,12 @@ class CatalogueMainFragment : Fragment() {
         event.with {
             when (dataState) {
                 DataState.LOADING -> {
-
+                    pbMain.visibility = View.VISIBLE
+                    vertical_recyclerview.visibility = View.GONE
                 }
                 DataState.SUCCESS -> {
-
+                    pbMain.visibility = View.GONE
+                    vertical_recyclerview.visibility = View.VISIBLE
                 }
                 DataState.ERROR -> {
 
@@ -103,7 +105,7 @@ class CatalogueMainFragment : Fragment() {
             }
 
             data.notNull {
-
+                arrayListImages.clear()
                 items = it as ArrayList<ResponseIMDB>
                 addData(items)
 
