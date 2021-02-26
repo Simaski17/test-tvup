@@ -9,5 +9,19 @@
         android:id="@+id/catalogueMainFragment"
         android:name="com.example.testtvup.ui.catalogue.CatalogueMainFragment"
         android:label="fragment_catalogue_main"
-        tools:layout="@layout/fragment_catalogue_main" />
+        tools:layout="@layout/fragment_catalogue_main" >
+        <action
+            android:id="@+id/action_catalogueMainFragment_to_catalogueDetailFragment"
+            app:destination="@id/catalogueDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/catalogueDetailFragment"
+        android:name="com.example.testtvup.ui.detail.CatalogueDetailFragment"
+        android:label="fragment_catalogue_detail"
+        tools:layout="@layout/fragment_catalogue_detail" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue="id" />
+    </fragment>
 </navigation>
