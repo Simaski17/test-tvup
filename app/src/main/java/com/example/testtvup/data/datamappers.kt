@@ -23,3 +23,12 @@ fun ResponseIMDB.toRoomResponseIMDB () : DomainResponseIMDB =
         items,
         title
     )
+
+fun DomainResponseIMDB.toDomainResponseIMDB () : ResponseIMDB =
+    ResponseIMDB(
+        description,
+        id,
+        image,
+        items,
+        title
+    )
