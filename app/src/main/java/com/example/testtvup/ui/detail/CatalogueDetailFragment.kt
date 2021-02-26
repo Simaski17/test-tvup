@@ -1,21 +1,20 @@
 package com.example.testtvup.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.domain.Item
-import com.example.domain.ResponseIMDB
 import com.example.falabellatest.ui.common.*
 import com.example.testtvup.R
+import com.example.testtvup.ui.catalogue.CatalogueMainFragmentDirections
 import kotlinx.android.synthetic.main.fragment_catalogue_detail.*
-import kotlinx.android.synthetic.main.fragment_catalogue_main.*
 
 
 class CatalogueDetailFragment : Fragment() {
@@ -68,7 +67,8 @@ class CatalogueDetailFragment : Fragment() {
                 }
 
                 btShow.setOnClickListener {
-                    Toast.makeText(activity?.applicationContext,"HORIZONTAL $url", Toast.LENGTH_SHORT).show()
+                    val action = CatalogueDetailFragmentDirections.actionCatalogueDetailFragmentToVideoDetailFragment(url = url)
+                    findNavController().navigate(action)
                 }
 
             }
