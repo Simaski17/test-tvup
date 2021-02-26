@@ -118,7 +118,7 @@ class CatalogueMainFragment : Fragment() {
 
             it.items.forEach {
                 val horizontalImageModel1 : HorizontalImageModel =
-                    HorizontalImageModel(it.art,Constants.VERTICAL_LIST)
+                    HorizontalImageModel(it.art, it.id, Constants.VERTICAL_LIST)
                 arrayListCoupleVerticalImages.add(horizontalImageModel1)
             }
 
@@ -134,7 +134,7 @@ class CatalogueMainFragment : Fragment() {
     }
 
     fun horizontalImageClick(data : HorizontalImageModel){
-        Toast.makeText(activity?.applicationContext,"HORIZONTAL", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity?.applicationContext,"HORIZONTAL ${data.Image}", Toast.LENGTH_SHORT).show()
     }
 
     private fun showFeedItems(recyclerView: RecyclerView, list: ArrayList<Any>?) {
