@@ -1,4 +1,4 @@
-package com.example.testtvup.data.database
+package com.example.testtvup.data.database.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

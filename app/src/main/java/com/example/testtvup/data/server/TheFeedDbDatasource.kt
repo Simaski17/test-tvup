@@ -2,6 +2,7 @@ package com.example.testtvup.data.server
 
 import com.example.data.source.RemoteDataSource
 import com.example.domain.Backgrounds
+import com.example.domain.ResponseIMDB
 
 class TheFeedDbDatasource (private val theFeedDbService: TheFeedDbService) : RemoteDataSource {
 
@@ -17,6 +18,10 @@ class TheFeedDbDatasource (private val theFeedDbService: TheFeedDbService) : Rem
 
         return arryList
 
+    }
+
+    override suspend fun getListMovies(): List<ResponseIMDB> {
+        return theFeedDbService.getListMovies().execute().body()!!
     }
 
 }

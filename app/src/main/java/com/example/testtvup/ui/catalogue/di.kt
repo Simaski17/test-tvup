@@ -1,7 +1,9 @@
 package com.example.testtvup.ui.catalogue
 
 import com.example.data.repository.BackgroundsRepository
+import com.example.data.repository.FeedMoviesRepository
 import com.example.usecases.GetListBackgroundsUseCase
+import com.example.usecases.GetListMoviesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
@@ -10,11 +12,14 @@ import dagger.Subcomponent
 class CatalogueMainFragmentModule() {
 
     @Provides
-    fun catalogueMainViewModelProvider(getListBackgroundsUseCase: GetListBackgroundsUseCase): CatalogueMainViewModel {
-        return CatalogueMainViewModel(getListBackgroundsUseCase) }
+    fun catalogueMainViewModelProvider(getListMoviesUseCase: GetListMoviesUseCase, getListBackgroundsUseCase: GetListBackgroundsUseCase): CatalogueMainViewModel {
+        return CatalogueMainViewModel(getListMoviesUseCase, getListBackgroundsUseCase) }
 
     @Provides
     fun getListBackgroundsUseCaseProvider(backgroundsRepository: BackgroundsRepository) = GetListBackgroundsUseCase(backgroundsRepository)
+
+    @Provides
+    fun getListMoviesUseCaseProvider(feedMoviesRepository: FeedMoviesRepository) = GetListMoviesUseCase(feedMoviesRepository)
 
 }
 
