@@ -136,11 +136,10 @@ class CatalogueMainFragment : Fragment() {
 
     fun horizontalImageClick(data : HorizontalImageModel){
         Toast.makeText(activity?.applicationContext,"HORIZONTAL ${data.Image}", Toast.LENGTH_SHORT).show()
-//        val action = HomeFragmentDirections.actionHomeFragmentToIndicatorDetailFragment(code = it.codigo)
-//        findNavController().navigate(action)
 
+        val action = CatalogueMainFragmentDirections.actionCatalogueMainFragmentToCatalogueDetailFragment(id = data.id)
+        findNavController().navigate(action)
 
-        
     }
 
     private fun showFeedItems(recyclerView: RecyclerView, list: ArrayList<Any>?) {
